@@ -67,11 +67,11 @@ export default function UserSignup() {
                             </div> : null}
                         <input type="text" placeholder='Name' required name="name" value={user.name} onChange={handleChange} />
                         <input type="email" placeholder='Email' required name="email" value={user.email} onChange={handleChange} />
+                        <input type="contact"  placeholder='Contact' required name='contact' value={user.contact} onChange={handleChange}/>
                         <input type="password" placeholder='Password' required name="password" value={user.password} onChange={handleChange} />
                         <input type="password" placeholder='Confirm Password' required name="cpassword" value={user.cpassword} onChange={handleChange} />
-                        <input type="pincode"  placeholder='Pincode' required name='pincode' value={user.pincode} onChange={handleChange}/>
                         <input type="address"  placeholder='Address' required name='address' value={user.address} onChange={handleChange}/>
-                        <input type="contact"  placeholder='Contact' required name='contact' value={user.contact} onChange={handleChange}/>
+                        <input type="pincode"  placeholder='Pincode' required name='pincode' value={user.pincode} onChange={handleChange}/>
                         <button type="submit" className='signupButton' disabled={isLoading}>{isLoading ? "Loading..." : "Register"}</button>
                         <button className='gotosignInButton' onClick={gotoSignin} >Sign In</button>
                     </div>

@@ -27,7 +27,16 @@ const UserSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
-
+  strike: {
+    type: Number,
+    default : 0
+   
+  },
+  accountStatus: {
+    type: Boolean,
+    default: true
+   
+  },
   tokens: [
     {
       token: {

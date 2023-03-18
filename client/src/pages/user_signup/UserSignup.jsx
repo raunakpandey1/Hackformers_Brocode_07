@@ -26,6 +26,8 @@ export default function UserSignup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // console.log(user)
+        
         setIsLoading(true)
         setErrors(false);
         const config = {
@@ -44,8 +46,8 @@ export default function UserSignup() {
                     throw new Error(`Internal Server Error`);
                 }
             });
-            localStorage.setItem("userAuthToken", data.userAuthToken);
-            localStorage.removeItem("adminAuthToken");
+            localStorage.setItem("userAuthToken", data.token);
+            localStorage.removeItem("policeAuthToken");
             setContext()
             setIsLoading(false);
             navigate('/user/dashboard/profile')
@@ -65,7 +67,7 @@ export default function UserSignup() {
                             <div className="errorDiv">
                                 <span className="errorMessage">{errors}</span>
                             </div> : null}
-                        <input type="text" placeholder='Name' required name="fullname" value={user.name} onChange={handleChange} />
+                        <input type="text" placeholder='Name' required name="fullname" value={user.fullname} onChange={handleChange} />
                         <input type="email" placeholder='Email' required name="email" value={user.email} onChange={handleChange} />
                         <input type="password" placeholder='Password' required name="password" value={user.password} onChange={handleChange} />
                         <input type="password" placeholder='Confirm Password' required name="cpassword" value={user.cpassword} onChange={handleChange} />
