@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CreateComplaintForm from "../../components/form/CreateComplaintForm";
 import "./userdashboard.css";
 import axios from "../../axios";
+import { ethers } from "ethers";
 export default function UserDashboard({
   provider,
   account,
@@ -63,6 +64,14 @@ export default function UserDashboard({
     console.log(newArr);
   };
    console.log(data)
+
+   const rewardUser = async() =>{
+    const amount = { value: ethers.utils.parseEther("0.005") };
+    const transaction = await complaintContract.Reward(account , amount);
+    await transaction.wait();
+    console.log("Transaction is done");
+   } 
+
   return (
     <div className="policeDashboard">
       <div className="pdWrapper">
@@ -97,8 +106,8 @@ export default function UserDashboard({
           <button className="primary" onClick={Getdata1}>
             Get Data
           </button>
-          <div className="image-list">{newArr}</div>
-          {console.log(data.length)}
+          {/* <div className="image-list">{newArr}</div>
+          {console.log(data.length)} */}
           {data.length>0 &&
             data.map((e) => {
               return (
@@ -116,7 +125,7 @@ export default function UserDashboard({
                       <option value="Accept">Accept</option>
                       <option value="Reject">Reject</option>
                     </select>
-                    <button className="rewardBtn">Reward</button>
+                    <button className="rewardBtn" onClick={rewardUser}>Reward</button>
                   </div>
                 </div>
               );

@@ -121,7 +121,10 @@ console.log(props.account)
         console.log(CID);
         const signer = props.complaintContract.connect(props.provider.getSigner());
         console.log(props.account)
-        signer.createComplaint(props.account, CID);
+        let transaction1 = await signer.createComplaint(props.account, CID);
+        await transaction1.wait()
+        let transaction2 = await signer.receivedComplaint("add1", CID);
+        await transaction2.wait()
         alert("Complaint Created Successfully ");
          
       } catch (e) {
