@@ -96,6 +96,7 @@ export default function UserDashboard({
             Get Data
           </button>
           <div className="image-list">{newArr}</div>
+          
           {newArr &&
             newArr.map((e) => {
               return (
