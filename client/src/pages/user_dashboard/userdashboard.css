@@ -1,0 +1,6 @@
+.userDashboard {
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    color: white;
+    background-color: #0F132D;
+}

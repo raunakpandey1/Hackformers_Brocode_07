@@ -124,7 +124,7 @@
     display: none;
     position: absolute;
     top: 60px;
-    box-shadow: 0 2px 8px 0 #0096FF;
+    /* box-shadow: 0 2px 8px 0 #0096FF; */
     min-width: 180px;
     z-index: 999;
     border-radius: 7px;
