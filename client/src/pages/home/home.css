@@ -1,5 +1,9 @@
 
-
+.homeDiv {
+    background-color: #0F132D;
+    height: calc(100vh - 60px);
+    color: white;
+}
 .homeDivWrapper{
     display: flex;
 }

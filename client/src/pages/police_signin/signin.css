@@ -4,13 +4,14 @@
     justify-content: center;
     height: calc(100vh - 60px);
     overflow-y: scroll;
+    color: white;
 }
 
 .signinWrapper{
     width: 550px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    box-shadow: 0 8px 20px 0 #0096FF;
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
@@ -24,7 +25,11 @@
     padding: 10px;
     margin: 7px;
     border-radius: 8px;
-    border: 1px solid #cfcfcf;
+    border: 1px solid #0096FF;
+    background: none;
+}
+.signinWrapper input::placeholder {
+    color: #007cd4;
 }
 .signinWrapper *{
     margin: 7px;
@@ -36,7 +41,7 @@
 }
 
 .signinButton {
-    background-color: #fe8f46;
+    background-color: #0096FF;
     outline: none;
     border: none;
     color: #FFFFFF;
@@ -45,12 +50,9 @@
 }
 
 .gotosignUpButton{
-    background-color: #FFFFFF;
     outline: none;
-    color: #fe8f46;
     padding: 10px;
     font-size: 15px;
-    border: 1px solid #fe8f46;
 }
 .errorDiv {
     padding: 0;

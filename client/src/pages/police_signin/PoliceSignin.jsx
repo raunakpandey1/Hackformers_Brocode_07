@@ -14,7 +14,7 @@ export default function AdminSignin() {
     const navigate = useNavigate();
     const gotoSignup = (e) => {
         e.preventDefault();
-        navigate('/admin/sign-up')
+        navigate('/police/sign-up')
     }
 
     const handleChange = (e) => {
@@ -58,7 +58,7 @@ export default function AdminSignin() {
         <div className='signinPage'>
             <form onSubmit={handleSubmit}>
                 <div className="signinWrapper">
-                    <h3>Admin Sign In</h3>
+                    <h3>Police Sign In</h3>
                     {errors ?
                         <div className="errorDiv">
                             <span className="errorMessage">{errors}</span>
