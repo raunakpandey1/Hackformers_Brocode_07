@@ -1,0 +1,69 @@
+.signinPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+}
+
+.signinWrapper{
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.signupWrapper h3 {
+    border: none;
+    text-align: left;
+}
+
+.signinWrapper input{
+    padding: 10px;
+    margin: 7px;
+    border-radius: 8px;
+    border: 1px solid #cfcfcf;
+}
+.signinWrapper *{
+    margin: 7px;
+    border-radius: 8px;
+}
+
+.signinWrapper button {
+    cursor: pointer;
+}
+
+.signinButton {
+    background-color: #fe8f46;
+    outline: none;
+    border: none;
+    color: #FFFFFF;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.gotosignUpButton{
+    background-color: #FFFFFF;
+    outline: none;
+    color: #fe8f46;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #fe8f46;
+}
+.errorDiv {
+    padding: 0;
+    border: none;
+}
+.errorMessage {
+    padding: 10px 0;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 0;
+    border: none;
+    font-weight: 500;
+}

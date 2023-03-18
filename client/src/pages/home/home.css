@@ -1,0 +1,94 @@
+
+
+.homeDivWrapper{
+    display: flex;
+}
+.homeLeft{
+    width: calc(100vw - 500px);
+    background-color: #F2F2F2;
+    height: calc(100vh - 60px);
+    padding: 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-y: scroll;
+}
+.homeLeftLoading{
+    width: calc(100vw - 500px);
+    background-color: #F2F2F2;
+    height: calc(100vh - 60px);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.homeRight{
+    width: 500px;
+    background-color: #FFFFFF;
+    height: calc(100vh - 60px);  
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: space-between;
+}
+.homeAction{
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.homeAction p{
+    text-align: left;
+    margin: 10px;
+    padding: 0px;
+    color: rgb(173, 173, 173);
+}
+.homeAction select{
+    padding: 10px;
+    font-size: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #ebfbff;
+}
+.homeMapDiv{
+    height: 100%;
+    width: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mapboxgl-popup {
+    width: 200px;
+}
+.notFoundDiv {
+    width: calc(100vw - 500px);
+    background-color: #F2F2F2;
+    height: calc(100vh - 60px);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.locError {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: red;
+    color: white;
+    padding: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+    .homeLeft{
+        grid-template-columns: repeat(2, 1fr);
+    }
+  }
