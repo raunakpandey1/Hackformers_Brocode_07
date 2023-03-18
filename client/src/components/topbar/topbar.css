@@ -203,3 +203,24 @@ nav {
 .dashboardBtn:hover {
     color: #37abff;
 }
+
+.nav__connect {
+    background-color: #0096FF;
+    padding: 10px;
+    background-color: #0096FF;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.nav_wA {
+    background: none;
+    border: none;
+    outline: none;
+    color: #0096FF;
+    overflow-x: hidden;
+    font-size: 15px;
+}

@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { AppContext } from '../../context/AppContext';
 import axios from '../../axios'
+import './form.css'
 
 export default function CreateComplaintForm(props) {
 
@@ -142,7 +143,7 @@ export default function CreateComplaintForm(props) {
             </button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
               <DialogTitle id="form-dialog-title">Create Complaint</DialogTitle>
-                {/* <DialogContent>
+              {/* <DialogContent>
                   <DialogContentText>
                   </DialogContentText>
                   <TextField
@@ -157,14 +158,14 @@ export default function CreateComplaintForm(props) {
                     fullWidth />
 
                 </DialogContent> */}
-                Upload Scene Image : 
-                <input type="file" id="image" accept="image/gif, image/jpeg, image/png" name="image"
-                    // value={painting.paintingName}
-                    onChange={
+                <div className="modalDiv">
+                
+                
+ <input type="file" name="image" id="file" className="inputfile" accept="image/gif, image/jpeg, image/png" onChange={
                       (e) => handleChange(e)
                       
                     }/>
- 
+                <label for="file">Choose a file</label>
                 <select 
                   value={complaint.name}
                         label="status"
@@ -184,31 +185,34 @@ export default function CreateComplaintForm(props) {
                         })
                       // console.log(e.target.value)
                     }/>
-                <input type="text" placeholder='Description' name="description"
+
+<textarea type="text" placeholder='Description' name="description"
                     value={complaint.description}
                     onChange={
                       (e) =>
                         setComplaint({
                           ...complaint,
                           description: e.target.value,
-                        })}
-                        />
-                
+                        })}/>
+              </div>
               <DialogActions>
                 <Button
                   onClick={handleClose}
-                  color="primary"
+                   
                 >
                   Cancel
                 </Button>
                 <Button
-                  onClick={handleSubmit}
-                  color="primary"
+                  // onClick={handleSubmit}
+                  color="light"
                 >
                   Submit
                 </Button>
+                
               </DialogActions>
+              
             </Dialog>
+            
           </>
           : null
       }

@@ -1,0 +1,70 @@
+.modalDiv {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    font-family: 'Inter';
+}
+
+.modalDiv > *{
+    margin: 10px 20px;
+    padding: 10px;
+    border: 1px solid #0096FF;
+    border-radius: 10px;
+}
+
+.MuiDialog-paper{
+    background-color: #272d54 !important;
+    color: white !important;
+}
+
+.modalDiv .inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    background-color: #0096FF;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #0084e2;
+}
+
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+
+.MuiButtonBase-root span {
+    color: white !important;
+    font-family: 'Inter';
+}
+
+.modalDiv select{
+    background-color: #272d54;
+    color: white;
+}
+.modalDiv input{
+    background-color: #272d54;
+    color: white;
+}
+.modalDiv textarea{
+    background-color: #272d54;
+    color: white;
+    height: 150px;
+}
+
+.modalDiv input::placeholder {
+    color: #007cd4;
+}
+.modalDiv textarea::placeholder {
+    color: #007cd4;
+}

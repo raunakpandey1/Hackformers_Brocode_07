@@ -18,6 +18,22 @@ export default function Topbar() {
     // const [searchValue, setSearchValue] = useState("");
     const navigate = useNavigate();
 
+    const connectHandler = async () => {
+        // const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        // const account = ethers.utils.getAddress(accounts[0])
+        // setAccount(account);
+        if (window.ethereum) {
+            // Do something 
+            window.ethereum.request({ method: 'eth_requestAccounts' })
+                .then(res => {
+                    // Return the address of the wallet
+                    localStorage.setItem("walletAddress", res[0])
+                })
+        } else {
+            alert("install metamask extension!!")
+        }
+    }
+
     // const adminLogoutHandler = async () => {
     //     const res = await logout_admin()
     //     if (res) {
@@ -81,9 +97,23 @@ export default function Topbar() {
                 } */}
 
                 {
-                    userAuth ?
+                    userAuth || true ?
                         <>
                             <NavLink exact className='dashboardBtn' to='/user/dashboard'>Dashboard</NavLink>
+                            {
+                                localStorage.getItem("walletAddress") ?
+                                    <button className='nav_wA'>
+                                        {localStorage.getItem("walletAddress").slice(0,6)+"..."+localStorage.getItem("walletAddress").slice(38,42)}
+                                    </button> 
+                                    :
+                                    <button
+                                        type="button"
+                                        className='nav__connect'
+                                        onClick={connectHandler}
+                                    >
+                                        Connect
+                                    </button>
+                            }
                         </>
                         :
                         <>
