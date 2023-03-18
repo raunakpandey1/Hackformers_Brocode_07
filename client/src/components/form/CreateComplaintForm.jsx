@@ -119,7 +119,10 @@ export default function CreateComplaintForm(props) {
         // console.log(res.data);
         const CID = `https://gateway.pinata.cloud/ipfs/${res.data.IpfsHash}`;
         console.log(CID);
-        alert("Successfully Painting Uploaded");
+        const signer = props.complaintContract.connect(props.provider.getSigner());
+        console.log(props.account)
+        signer.createComplaint(props.account, CID);
+        alert("Complaint Created Successfully ");
          
       } catch (e) {
         alert("Unable to upload image to Pinata");
@@ -128,7 +131,7 @@ export default function CreateComplaintForm(props) {
   
   };
 
-
+  // console.log(props.complaintContract)
   return (
 
     <div>
@@ -203,7 +206,7 @@ export default function CreateComplaintForm(props) {
                   Cancel
                 </Button>
                 <Button
-                  // onClick={handleSubmit}
+                  onClick={handleSubmit}
                   color="light"
                 >
                   Submit
