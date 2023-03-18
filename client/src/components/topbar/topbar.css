@@ -223,4 +223,9 @@ nav {
     color: #0096FF;
     overflow-x: hidden;
     font-size: 15px;
+    margin-right: 20px;
+}
+
+.logoutBtn {
+    cursor: pointer;
 }

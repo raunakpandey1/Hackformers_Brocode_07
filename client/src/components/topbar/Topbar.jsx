@@ -8,6 +8,7 @@ import { useContext } from "react";
 // import { logout_admin } from "../../service/adminApi";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
+import LogoutIcon from "../../static/svg/LogoutIcon";
 // import { SearchContext } from "../../context/SearchContext";
 // import SearchIcon from "../../static/svg/SearchIcon";
 
@@ -32,6 +33,18 @@ export default function Topbar() {
         } else {
             alert("install metamask extension!!")
         }
+    }
+
+    const handleUserLogout = async () => {
+        localStorage.removeItem("userAuthToken")
+        dispatch({ type: "EMPTY_STATE" });
+        navigate("/")
+    }
+
+    const handlePoliceLogout = async () => {
+        localStorage.removeItem("policeAuthToken")
+        dispatch({ type: "EMPTY_STATE" });
+        navigate("/")
     }
 
     // const adminLogoutHandler = async () => {
@@ -97,14 +110,14 @@ export default function Topbar() {
                 } */}
 
                 {
-                    userAuth || true ?
+                    userAuth ?
                         <>
                             <NavLink exact className='dashboardBtn' to='/user/dashboard'>Dashboard</NavLink>
                             {
                                 localStorage.getItem("walletAddress") ?
                                     <button className='nav_wA'>
-                                        {localStorage.getItem("walletAddress").slice(0,6)+"..."+localStorage.getItem("walletAddress").slice(38,42)}
-                                    </button> 
+                                        {localStorage.getItem("walletAddress").slice(0, 6) + "..." + localStorage.getItem("walletAddress").slice(38, 42)}
+                                    </button>
                                     :
                                     <button
                                         type="button"
@@ -114,16 +127,18 @@ export default function Topbar() {
                                         Connect
                                     </button>
                             }
+                            <div className="logoutBtn" onClick={handleUserLogout}><LogoutIcon /></div>
                         </>
                         :
                         <>
-                            <NavLink exact className='userSignInBtn' to='/user/sign-in'>Sign in</NavLink>
                             {
                                 policeAuth ?
                                     <>
                                         <NavLink exact className='dashboardBtn' to='/police/dashboard'>Dashboard</NavLink>
+                                        <div className="logoutBtn" onClick={handlePoliceLogout}><LogoutIcon /></div>
                                     </> :
                                     <>
+                                        <NavLink exact className='userSignInBtn' to='/user/sign-in'>Sign in</NavLink>
                                         <div class="dropdown-menu">
                                             <div className="dropdown-flex">
                                                 <div class="menu-btn"><MoreIcon /></div>

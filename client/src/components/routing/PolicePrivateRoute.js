@@ -4,11 +4,11 @@ import { AppContext } from '../../context/AppContext';
 
 const PolicePrivateRoute = ({ children }) => {
 
-    const { adminAuth, contextLoading } = useContext(AppContext);
+    const { policeAuth, contextLoading } = useContext(AppContext);
 
     return (
         !contextLoading ?
-            adminAuth ? children : <Navigate to="/" />
+            policeAuth ? children : <Navigate to="/" />
             : <p>Loading...</p>
     )
 }

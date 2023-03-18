@@ -5,7 +5,7 @@ import axios from "../../axios"
 import { AppContext } from '../../context/AppContext';
 import './signin.css'
 
-export default function AdminSignin() {
+export default function PoliceSignin() {
     const [errors, setErrors] = useState("");
     const [user, setUser] = useState({ email: "", password: "" })
     const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +48,7 @@ export default function AdminSignin() {
             localStorage.removeItem("userAuthToken");
             setContext()
             setIsLoading(false);
-            navigate('/admin/dashboard')
+            navigate('/police/dashboard')
         } catch (err) {
             setIsLoading(false)
         }
