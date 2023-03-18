@@ -35,7 +35,7 @@ export default function UserSignup() {
             }
         }
         try {
-            const { data } = await axios.post("/api/user/auth/policesignup", user, config).catch(err => {
+            const { data } = await axios.post("/api/auth/policesignup", user, config).catch(err => {
                 if (err.response.status === 401) {
                     setErrors(err.response.data.error)
                     throw new Error(err.response.data.error);
@@ -44,11 +44,11 @@ export default function UserSignup() {
                     throw new Error(`Internal Server Error`);
                 }
             });
-            localStorage.setItem("userAuthToken", data.userAuthToken);
-            localStorage.removeItem("adminAuthToken");
+            localStorage.setItem("policeAuthToken", data.token);
+            localStorage.removeItem("userAuthToken");
             setContext()
             setIsLoading(false);
-            navigate('/user/dashboard/profile')
+            navigate('/police/dashboard')
         } catch (err) {
             setIsLoading(false)
         }
@@ -60,7 +60,7 @@ export default function UserSignup() {
             <form onSubmit={handleSubmit}>
                 <div className="signupWrapper">
                     <div className="signupLeft">
-                        <h3>User Sign Up</h3>
+                        <h3>Police Sign Up</h3>
                         {errors ?
                             <div className="errorDiv">
                                 <span className="errorMessage">{errors}</span>

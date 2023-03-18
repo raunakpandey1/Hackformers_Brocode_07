@@ -43,11 +43,11 @@ export default function UserSignin() {
                     throw new Error(`Internal Server Error`);
                 }
             });
-            localStorage.setItem("userAuthToken", data.userAuthToken);
-            localStorage.removeItem("adminAuthToken");
+            localStorage.setItem("userAuthToken", data.token);
+            localStorage.removeItem("policeAuthToken");
             setContext()
             setIsLoading(false);
-            navigate('/user/dashboard/profile')
+            navigate('/user/dashboard')
         } catch (err) {
             setIsLoading(false)
         }

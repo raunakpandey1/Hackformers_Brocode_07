@@ -3,9 +3,15 @@ require('dotenv').config({path: "./config.env"})
 const app = express();
 const connectDB = require("./configuration/db");
 const errorHandler = require("./middleware/error");
-
+const cors=require("cors");
 connectDB();
-
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+ }
+ 
+ app.use(cors(corsOptions)) // Use this after the variable declaration
 // app.use(express.static(path.join(process.cwd(), 'public')))
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }))
@@ -16,7 +22,7 @@ app.get("/", (req, res, next) => {
 
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
-// app.use("/api/private", require("./routes/private"));
+app.use("/api/private", require("./routes/private"));
 
 // Error Handler Middleware
 app.use(errorHandler);
