@@ -196,7 +196,6 @@ nav {
     border-radius: 7px;
     cursor: pointer;
     transition: 0.2s;
-    margin: 0px 10px;
     border: none;
     text-decoration: none;
 }
@@ -228,4 +227,5 @@ nav {
 
 .logoutBtn {
     cursor: pointer;
+    margin-left: 20px;
 }

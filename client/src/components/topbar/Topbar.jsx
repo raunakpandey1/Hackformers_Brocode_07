@@ -11,6 +11,8 @@ import { useState } from "react";
 import LogoutIcon from "../../static/svg/LogoutIcon";
 // import { SearchContext } from "../../context/SearchContext";
 // import SearchIcon from "../../static/svg/SearchIcon";
+import HomeLogo from '../../static/assests/homelogo.png'
+
 import { ethers } from "ethers";
 export default function Topbar({ account, setAccount }) {
     const connectHandler = async () => {
@@ -60,7 +62,7 @@ export default function Topbar({ account, setAccount }) {
     return (
         <div className="topbarWrapper">
             <NavLink exact to="/" className="nav-logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Logo-police-nationale-france.svg/1772px-Logo-police-nationale-france.svg.png" />
+                <img src={HomeLogo} />
             </NavLink>
             {/* <form onSubmit={handleSearch} className="searchDiv">
                 <button type="submit" className="searchButton"><SearchIcon/></button>

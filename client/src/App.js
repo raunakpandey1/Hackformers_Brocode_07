@@ -45,11 +45,8 @@ function App() {
       Complaints,
       provider
     );
-
-    
    
     setComplaintContract(complaint)
-
 
     //listens for changes to the currently selected Ethereum account
     window.ethereum.on("accountsChanged", async () => {

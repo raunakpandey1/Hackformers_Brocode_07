@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './home.css';
-
-function Button() {
-    return(
-        <></>
-    );
-  }
-
+import HomeImg from '../../static/assests/homeimage.png'
 export default function Home() {
+
+    const navigate = useNavigate();
+
+    const gotoUserDashbaord = (e) => {
+        e.preventDefault();
+        navigate('/user/dashboard')
+    }
 
     return (
         <>
-        {/* <div className='homeDiv'>
-            
-        </div> */}
-
-        <div className='Card'>
-            <h1>Online</h1>
-            <h1>Complaint Portal</h1>
-                <p> 
-                    dgsdgsdagdsanfhsajdasmajjnjDNdkNDADSsnjdsbsja<br/>
-                    dgsdgsdagdsanfhsajdasmajjnjDNdkNDADSsnjdsbsja<br/>
-                    dgsdgsdagdsanfhsajdasmajjnjDNdkNDADSsnjdsbsja<br/>
-                </p>
-                <button className='btn1' onClick={Button}>Default</button>
-        </div>
-
-        <div className='Footer-page'>
-                <p> 
-                    dgsdgsdagdsanfhsajdasmajjnjDNdkNDADSsnjdsbsja<br/>
-                </p>
-        </div>
+            <div className='homeDiv'>
+                <div className="homeDivWrapper">
+                    <div className="hdLeft">
+                        <h2 className='hUpper'>Online</h2>
+                        <h2 className='hUpper'><span>Complaint</span> Portal</h2>
+                        <p>The only place where your complaints are precious to us! if you have a complaint againt any private or public entity in India, you are at the right place.</p>
+                        <button onClick={gotoUserDashbaord}>Register Complaint</button>
+                    </div>
+                    <div className="hdRight">
+                        <img src={HomeImg}/>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

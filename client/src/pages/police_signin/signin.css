@@ -27,6 +27,7 @@
     border-radius: 8px;
     border: 1px solid #0096FF;
     background: none;
+    color: white;
 }
 .signinWrapper input::placeholder {
     color: #007cd4;
@@ -53,6 +54,9 @@
     outline: none;
     padding: 10px;
     font-size: 15px;
+    background: none;
+    color: #0096FF;
+    border: none;
 }
 .errorDiv {
     padding: 0;
