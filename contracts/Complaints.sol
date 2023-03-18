@@ -8,7 +8,7 @@ contract Complaints {
   address public owner;
 
   mapping(address=>string[]) complaints;
-  mapping(address=>string[]) replies;
+  mapping(string=>string[]) receivedComplaints;
 
   event ComplaintCreated(address _user, string url);
   event RewardUser(address payable _user, uint256 amount);
@@ -26,21 +26,26 @@ contract Complaints {
       complaints[_user].push(url);
       emit ComplaintCreated(_user , url);
   }
+
+function receivedComplaint(string memory _name , string memory url) external {
+      receivedComplaints[_name].push(url);
+   
+  }
  
   function displayComplaint(address _user) external view returns(string[] memory) {
       return complaints[_user];
   }
 
-  function createReplies(string memory url) external onlyOwner{
-      complaints[owner].push(url);
-      emit ComplaintCreated(owner , url);
-  }
+//   function createReplies(string memory url) external onlyOwner{
+//       complaints[owner].push(url);
+//       emit ComplaintCreated(owner , url);
+//   }
  
-  function displayReplies() external view returns(string[] memory) {
-      return complaints[owner];
-  }
+//   function displayReplies() external view returns(string[] memory) {
+//       return complaints[owner];
+//   }
 
-  //0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+
   function Reward(address payable _user) public payable onlyOwner {
         require(msg.value > 0, "Please pay greater than 0 ether");
         (bool success, ) = payable(_user).call{value: msg.value}(""); //transfer ether to seller
