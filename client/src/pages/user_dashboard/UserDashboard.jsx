@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CreateComplaintForm from '../../components/form/CreateComplaintForm'
 import './userdashboard.css'
 
-export default function UserDashboard() {
+export default function UserDashboard({ provider, account, complaintContract}) {
 
     return (
         <div className='policeDashboard'>
