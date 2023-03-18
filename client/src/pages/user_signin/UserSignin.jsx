@@ -34,7 +34,7 @@ export default function UserSignin() {
             }
         }
         try {
-            const { data } = await axios.post("/api/user/auth/sign-in", user, config).catch(err => {
+            const { data } = await axios.post("/api/auth/signinuser", user, config).catch(err => {
                 if (err.response.status === 401) {
                     setErrors(err.response.data.error)
                     throw new Error(err.response.data.error);
@@ -43,11 +43,12 @@ export default function UserSignin() {
                     throw new Error(`Internal Server Error`);
                 }
             });
-            localStorage.setItem("userAuthToken", data.userAuthToken);
-            localStorage.removeItem("adminAuthToken");
+            console.log(data)
+            localStorage.setItem("userAuthToken", data.token);
+            localStorage.removeItem("policeAuthToken");
             setContext()
             setIsLoading(false);
-            navigate('/user/dashboard/profile')
+            navigate('/user/dashboard')
         } catch (err) {
             setIsLoading(false)
         }

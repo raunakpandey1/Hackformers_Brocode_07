@@ -4,11 +4,12 @@
     justify-content: center;
     height: calc(100vh - 60px);
     overflow-y: scroll;
+    background-color: #0F132D;
 }
 
 .signupWrapper{
     display: flex;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    box-shadow: 0 8px 20px 0 #0096FF;
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;

@@ -50,8 +50,10 @@ export const AppContextProvider = ({children}) => {
 
     const setContext = async ()=>{
         setContextLoading(true);
+        // console.log(check_user_auth())
         const policeData = await check_police_auth()
         const userData = await check_user_auth()
+        console.log(userData)
         if(policeData){
             dispatch({ type: "FETCH_SUCCESS", value: {userAuth: false, policeAuth: true, user: null, police: policeData}});
             setContextLoading(false);

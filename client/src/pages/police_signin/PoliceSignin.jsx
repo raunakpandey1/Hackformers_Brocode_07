@@ -14,7 +14,7 @@ export default function AdminSignin() {
     const navigate = useNavigate();
     const gotoSignup = (e) => {
         e.preventDefault();
-        navigate('/admin/sign-up')
+        navigate('/police/sign-up')
     }
 
     const handleChange = (e) => {
@@ -35,7 +35,7 @@ export default function AdminSignin() {
             }
         }
         try {
-            const { data } = await axios.post("/api/admin/auth/sign-in", user, config).catch(err => {
+            const { data } = await axios.post("/api/auth/signinpolice", user, config).catch(err => {
                 if (err.response.status === 401) {
                     setErrors(err.response.data.error)
                     throw new Error(err.response.data.error);
@@ -44,11 +44,11 @@ export default function AdminSignin() {
                     throw new Error(`Internal Server Error`);
                 }
             });
-            localStorage.setItem("adminAuthToken", data.adminAuthToken);
+            localStorage.setItem("policeAuthToken", data.token);
             localStorage.removeItem("userAuthToken");
             setContext()
             setIsLoading(false);
-            navigate('/admin/dashboard/profile')
+            navigate('/admin/dashboard')
         } catch (err) {
             setIsLoading(false)
         }
@@ -58,7 +58,7 @@ export default function AdminSignin() {
         <div className='signinPage'>
             <form onSubmit={handleSubmit}>
                 <div className="signinWrapper">
-                    <h3>Admin Sign In</h3>
+                    <h3>Police Sign In</h3>
                     {errors ?
                         <div className="errorDiv">
                             <span className="errorMessage">{errors}</span>
