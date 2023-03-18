@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const ErrorResponse = require("../utils/errorResponse");
 const Police = require("../models/Police");
 
-exports.protect = async (req, res, next) => {
+exports.protectPolice = async (req, res, next) => {
   let token;
 
   if (

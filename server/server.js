@@ -5,6 +5,7 @@ const connectDB = require("./configuration/db");
 const errorHandler = require("./middleware/error");
 const cors=require("cors");
 connectDB();
+app.use(express.json());
 const corsOptions ={
     origin:'*', 
     credentials:true,            //access-control-allow-credentials:true
@@ -13,7 +14,7 @@ const corsOptions ={
  
  app.use(cors(corsOptions)) // Use this after the variable declaration
 // app.use(express.static(path.join(process.cwd(), 'public')))
-app.use(express.json());
+
 // app.use(express.urlencoded({ extended: false }))
 
 app.get("/", (req, res, next) => {
