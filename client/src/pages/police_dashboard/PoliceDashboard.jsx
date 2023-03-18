@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AppContext } from '../../context/AppContext';
 import './policedashboard.css'
 
 export default function PoliceDashboard() {
+
+    const {police} = useContext(AppContext)
 
     return (
         <div className='policeDashboard'>
@@ -11,10 +14,10 @@ export default function PoliceDashboard() {
                         <img src="https://fpslakeland.com/wp-content/uploads/bb-importer/0270baba-a05b-5a2e-9170-b277e47d2353/Portrait_Placeholder.png" />
                     </div>
                     <div className="pdfRight">
-                        <h2>Chulbul Pandey</h2>
-                        <p>pandey@mahapolice.in</p>
-                        <p>+91 9876543210</p>
-                        <p>Mumbai, Maharashtra, India - 400057</p>
+                        <h2>{police.name}</h2>
+                        <p>{police.email}</p>
+                        <p>{police.contact}</p>
+                        <p>{police.address} - {police.pincode}</p>
                     </div>
                 </div>
 

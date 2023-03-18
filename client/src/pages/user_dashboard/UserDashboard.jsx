@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CreateComplaintForm from "../../components/form/CreateComplaintForm";
 import "./userdashboard.css";
 import axios from "../../axios";
+import { AppContext } from "../../context/AppContext";
 export default function UserDashboard({
   provider,
   account,
   complaintContract,
 }) {
+  const {user} = useContext(AppContext);
   const [data, setData] = useState([]);
   let newArr = [];
-//   console.log(account)
+ 
   const Getdata = async () => {
     let dataArray;
-
+    // console.log("helo", complaintContract, account)
     try {
       dataArray = await complaintContract.displayComplaint(account);
       //   setData(dataArray)
@@ -27,7 +29,8 @@ export default function UserDashboard({
       //     // setData((dat) => [...dat, e]);
       //   });
       dataArray.forEach(async (e) => {
-        let dat1 = await axios.get(e);
+        // let dat1 = await axios.get(e);
+        let dat1 = await fetch(e)
         newArr.push(dat1.data);
         // setData([...data,  dat1.data]);
         // console.log(typeof dat1.data)
@@ -36,6 +39,7 @@ export default function UserDashboard({
       //   console.log(newArr);
       //   setData(newArr)
     } catch (e) {
+      console.log("Helo", e)
       alert("You don't have access");
     }
     // const isEmpty = Object.keys(dataArray).length === 0;
@@ -62,19 +66,17 @@ export default function UserDashboard({
     setData(newArr)
     console.log(newArr);
   };
-   console.log(data)
+  console.log(data)
   return (
     <div className="policeDashboard">
       <div className="pdWrapper">
         <div className="pdProfile">
           <div className="pdfLeft">
-            <img src="https://fpslakeland.com/wp-content/uploads/bb-importer/0270baba-a05b-5a2e-9170-b277e47d2353/Portrait_Placeholder.png" />
+            <img src={user.profileImg} />
           </div>
           <div className="pdfRight">
-            <h2>Chulbul Pandey</h2>
-            <p>pandey@mahapolice.in</p>
-            <p>+91 9876543210</p>
-            <p>Mumbai, Maharashtra, India - 400057</p>
+            <h2>{user.fullname}</h2>
+            <p>{user.email}</p>
           </div>
         </div>
 
