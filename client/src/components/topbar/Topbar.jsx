@@ -27,7 +27,7 @@ export default function Topbar() {
             window.ethereum.request({ method: 'eth_requestAccounts' })
                 .then(res => {
                     // Return the address of the wallet
-                    console.log(res)
+                    localStorage.setItem("walletAddress", res[0])
                 })
         } else {
             alert("install metamask extension!!")
@@ -100,13 +100,20 @@ export default function Topbar() {
                     userAuth || true ?
                         <>
                             <NavLink exact className='dashboardBtn' to='/user/dashboard'>Dashboard</NavLink>
-                            <button
-                                type="button"
-                                className='nav__connect'
-                                onClick={connectHandler}
-                            >
-                                Connect
-                            </button>
+                            {
+                                localStorage.getItem("walletAddress") ?
+                                    <button className='nav_wA'>
+                                        {localStorage.getItem("walletAddress").slice(0,6)+"..."+localStorage.getItem("walletAddress").slice(38,42)}
+                                    </button> 
+                                    :
+                                    <button
+                                        type="button"
+                                        className='nav__connect'
+                                        onClick={connectHandler}
+                                    >
+                                        Connect
+                                    </button>
+                            }
                         </>
                         :
                         <>
