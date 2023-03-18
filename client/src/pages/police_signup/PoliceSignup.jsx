@@ -35,7 +35,7 @@ export default function UserSignup() {
             }
         }
         try {
-            const { data } = await axios.post("/api/auth/policesignup", user, config).catch(err => {
+            const { data } = await axios.post("/api/auth/signuppolice", user, config).catch(err => {
                 if (err.response.status === 401) {
                     setErrors(err.response.data.error)
                     throw new Error(err.response.data.error);

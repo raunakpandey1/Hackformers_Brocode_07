@@ -15,6 +15,7 @@
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
+    color: white;
 }
 .signupWrapper h3 {
     border: none;
@@ -28,6 +29,10 @@
     border: 1px solid #0096FF;
     background: none;
 }
+.signinWrapper input::placeholder {
+    color: #007cd4;
+}
+
 .signinWrapper *{
     margin: 7px;
     border-radius: 8px;

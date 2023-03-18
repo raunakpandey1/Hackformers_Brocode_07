@@ -12,6 +12,7 @@
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
+    color: white;
 }
 .signupLeft{
     display: flex;
@@ -38,6 +39,9 @@
     border-radius: 8px;
     border: 1px solid #cfcfcf;
 }
+.signupWrapper input::placeholder {
+    color: #007cd4;
+}
 .signupWrapper *{
     margin: 7px;
     border-radius: 8px;
@@ -48,7 +52,7 @@
 }
 
 .signupButton {
-    background-color: #fe8f46;
+    background-color: #0096FF;
     outline: none;
     border: none;
     color: #FFFFFF;
@@ -57,12 +61,12 @@
 }
 
 .gotosignInButton{
-    background-color: #FFFFFF;
     outline: none;
-    color: #fe8f46;
     padding: 10px;
     font-size: 15px;
-    border: 1px solid #fe8f46;
+    background: none;
+    color: #0096FF;
+    border: none;
 }
 .errorDiv {
     padding: 0;

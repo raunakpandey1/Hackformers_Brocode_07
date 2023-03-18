@@ -45,11 +45,8 @@ function App() {
       Complaints,
       provider
     );
-
-    
    
     setComplaintContract(complaint)
-
 
     //listens for changes to the currently selected Ethereum account
     window.ethereum.on("accountsChanged", async () => {
@@ -78,14 +75,12 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/police/sign-in" element={<PoliceSignin />} />
                 <Route path="/police/sign-up" element={<PoliceSignup />} />
-                <Route path="/police/dashboard" element={<PoliceDashboard/>}/>
+                <Route path="/police/dashboard" element={<PolicePrivateRoute><PoliceDashboard/></PolicePrivateRoute>}/>
                 {/* <Route path="/police/dashboard/:tabs" element={<AdminPrivateRoute><AdminDashboard /></AdminPrivateRoute>} /> */}
 
                 <Route path="/user/sign-in" element={<UserSignin />} />
                 <Route path="/user/sign-up" element={<UserSignup />} />
-                <Route path="/user/dashboard" element={<UserDashboard provider={provider}
-          account={account}
-          complaintContract={complaintContract}/>}/>
+                <Route path="/user/dashboard" element={<UserPrivateRoute><UserDashboard/></UserPrivateRoute>}/>
                 {/* <Route path="/user/dashboard/:tabs" element={<UserPrivateRoute><UserDashboard /></UserPrivateRoute>} /> */}
 
                 {/* <Route path="/product/:product_id" element={<ProductPage/>} /> */}
