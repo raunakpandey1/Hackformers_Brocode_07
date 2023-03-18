@@ -43,6 +43,7 @@ export default function UserSignin() {
                     throw new Error(`Internal Server Error`);
                 }
             });
+            console.log(data)
             localStorage.setItem("userAuthToken", data.token);
             localStorage.removeItem("policeAuthToken");
             setContext()
