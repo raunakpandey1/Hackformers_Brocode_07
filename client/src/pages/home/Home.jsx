@@ -6,6 +6,7 @@ export default function Home() {
     return (
         <div className='homeDiv'>
             Home Page here
+            
         </div>
     )
 }
