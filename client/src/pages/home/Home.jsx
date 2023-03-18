@@ -11,9 +11,9 @@ export default function Home() {
 
     return (
         <>
-        <div className='homeDiv'>
+        {/* <div className='homeDiv'>
             
-        </div>
+        </div> */}
 
         <div className='Card'>
             <h1>Online</h1>
