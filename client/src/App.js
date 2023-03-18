@@ -75,7 +75,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/police/sign-in" element={<PoliceSignin />} />
                 <Route path="/police/sign-up" element={<PoliceSignup />} />
-                <Route path="/police/dashboard" element={<PolicePrivateRoute><PoliceDashboard/></PolicePrivateRoute>}/>
+                <Route path="/police/dashboard" element={<PolicePrivateRoute><PoliceDashboard provider={provider} account={account} complaintContract={complaintContract}/></PolicePrivateRoute>}/>
                 {/* <Route path="/police/dashboard/:tabs" element={<AdminPrivateRoute><AdminDashboard /></AdminPrivateRoute>} /> */}
 
                 <Route path="/user/sign-in" element={<UserSignin />} />

@@ -3,15 +3,17 @@ import CreateComplaintForm from "../../components/form/CreateComplaintForm";
 import "./userdashboard.css";
 import axios from "../../axios";
 import { AppContext } from "../../context/AppContext";
+import { ethers } from "ethers";
+
 export default function UserDashboard({
   provider,
   account,
   complaintContract,
 }) {
-  const {user} = useContext(AppContext);
+  const { user } = useContext(AppContext);
   const [data, setData] = useState([]);
   let newArr = [];
- 
+
   const Getdata = async () => {
     let dataArray;
     // console.log("helo", complaintContract, account)
@@ -67,6 +69,14 @@ export default function UserDashboard({
     console.log(newArr);
   };
   console.log(data)
+
+  const rewardUser = async () => {
+    const amount = { value: ethers.utils.parseEther("0.005") };
+    const transaction = await complaintContract.Reward(account, amount);
+    await transaction.wait();
+    console.log("Transaction is done");
+  }
+
   return (
     <div className="policeDashboard">
       <div className="pdWrapper">
@@ -99,9 +109,9 @@ export default function UserDashboard({
           <button className="primary" onClick={Getdata1}>
             Get Data
           </button>
-          <div className="image-list">{newArr}</div>
-          {console.log(data.length)}
-          {data.length>0 &&
+          {/* <div className="image-list">{newArr}</div>
+          {console.log(data.length)} */}
+          {data.length > 0 &&
             data.map((e) => {
               return (
                 <div className="pComplaintDiv">
@@ -118,7 +128,7 @@ export default function UserDashboard({
                       <option value="Accept">Accept</option>
                       <option value="Reject">Reject</option>
                     </select>
-                    <button className="rewardBtn">Reward</button>
+                    <button className="rewardBtn" onClick={rewardUser}>Reward</button>
                   </div>
                 </div>
               );
