@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CreateComplaintForm from '../../components/form/CreateComplaintForm'
 import './userdashboard.css'
 
 export default function UserDashboard() {
@@ -19,11 +20,12 @@ export default function UserDashboard() {
                 </div>
 
                 <div className="createComplaints">
-                    <button className="createComBtn">
+                    {/* <button className="createComBtn">
                         +
-                    </button>
+                    </button> */}
+                    <CreateComplaintForm signal={true}/>
                 </div>
-                
+
                 <div className="pdComplaints">
 
                     <div className="pComplaintDiv">
