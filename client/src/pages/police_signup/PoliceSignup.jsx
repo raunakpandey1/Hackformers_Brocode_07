@@ -7,7 +7,7 @@ import { AppContext } from '../../context/AppContext';
 export default function UserSignup() {
 
     const [errors, setErrors] = useState("");
-    const [user, setUser] = useState({ name: "", email: "", password: "", cpassword: "" })
+    const [user, setUser] = useState({ name: "", email: "", password: "", cpassword: "" ,pincode:"" ,address:"",contact:""})
     const [isLoading, setIsLoading] = useState(false);
     const { setContext } = useContext(AppContext)
 
@@ -35,7 +35,7 @@ export default function UserSignup() {
             }
         }
         try {
-            const { data } = await axios.post("/api/user/auth/sign-up", user, config).catch(err => {
+            const { data } = await axios.post("/api/user/auth/policesignup", user, config).catch(err => {
                 if (err.response.status === 401) {
                     setErrors(err.response.data.error)
                     throw new Error(err.response.data.error);
@@ -69,6 +69,9 @@ export default function UserSignup() {
                         <input type="email" placeholder='Email' required name="email" value={user.email} onChange={handleChange} />
                         <input type="password" placeholder='Password' required name="password" value={user.password} onChange={handleChange} />
                         <input type="password" placeholder='Confirm Password' required name="cpassword" value={user.cpassword} onChange={handleChange} />
+                        <input type="pincode"  placeholder='Pincode' required name='pincode' value={user.pincode} onChange={handleChange}/>
+                        <input type="address"  placeholder='Address' required name='address' value={user.address} onChange={handleChange}/>
+                        <input type="contact"  placeholder='Contact' required name='contact' value={user.contact} onChange={handleChange}/>
                         <button type="submit" className='signupButton' disabled={isLoading}>{isLoading ? "Loading..." : "Register"}</button>
                         <button className='gotosignInButton' onClick={gotoSignin} >Sign In</button>
                     </div>
