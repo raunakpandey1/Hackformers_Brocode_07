@@ -9,6 +9,7 @@ export default function UserDashboard({
 }) {
   const [data, setData] = useState([]);
   let newArr = [];
+//   console.log(account)
   const Getdata = async () => {
     let dataArray;
 
@@ -58,9 +59,10 @@ export default function UserDashboard({
     //   console.log(dataArray)
   };
   const Getdata1 = () => {
+    setData(newArr)
     console.log(newArr);
   };
-  //  console.log(data)
+   console.log(data)
   return (
     <div className="policeDashboard">
       <div className="pdWrapper">
@@ -96,19 +98,20 @@ export default function UserDashboard({
             Get Data
           </button>
           <div className="image-list">{newArr}</div>
-          
-          {newArr &&
-            newArr.map((e) => {
+          {console.log(data.length)}
+          {data.length>0 &&
+            data.map((e) => {
               return (
                 <div className="pComplaintDiv">
                   <div className="pcdLeft">
-                    <img src="https://i.ndtvimg.com/mt/2014-12/indian_traffic_generic_thinkstock_650_bigstry.jpg" />
+                    <img src={e.image} />
                   </div>
                   <div className="pcdRight">
-                    <h3>{newArr.name}</h3>
+                    <h3>{e.name}</h3>
 
-                    <p>{newArr.description}</p>
-                    <select value={newArr.status}>
+                    <p>{e.description}</p>
+                    <h3>{e.walletAddress}</h3>
+                    <select value={e.status}>
                       <option value="Action">Action</option>
                       <option value="Accept">Accept</option>
                       <option value="Reject">Reject</option>

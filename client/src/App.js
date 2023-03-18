@@ -80,7 +80,7 @@ function App() {
 
                 <Route path="/user/sign-in" element={<UserSignin />} />
                 <Route path="/user/sign-up" element={<UserSignup />} />
-                <Route path="/user/dashboard" element={<UserPrivateRoute><UserDashboard/></UserPrivateRoute>}/>
+                <Route path="/user/dashboard" element={<UserPrivateRoute><UserDashboard provider={provider} account={account} complaintContract={complaintContract}/></UserPrivateRoute>}/>
                 {/* <Route path="/user/dashboard/:tabs" element={<UserPrivateRoute><UserDashboard /></UserPrivateRoute>} /> */}
 
                 {/* <Route path="/product/:product_id" element={<ProductPage/>} /> */}

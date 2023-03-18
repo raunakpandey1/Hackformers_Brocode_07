@@ -22,8 +22,8 @@ export default function CreateComplaintForm(props) {
   //   const value = e.target.value;
   //   setMyUser({ ...myUser, [name]: value })
   // }
-
-  const [complaint, setComplaint] = useState({ image: "", name : "", subject: "", description: "" , complaintStatus :"" , walletAddress : "" , reward : 0})
+console.log(props.account)
+  const [complaint, setComplaint] = useState({ image: "", name : "", subject: "", description: "" , complaintStatus :"" , walletAddress : props.account , reward : 0})
   const [file, setFile] = useState(null);
 
   
@@ -185,6 +185,7 @@ export default function CreateComplaintForm(props) {
                         setComplaint({
                           ...complaint,
                           subject: e.target.value,
+                          walletAddress : props.account
                         })
                       // console.log(e.target.value)
                     }/>
