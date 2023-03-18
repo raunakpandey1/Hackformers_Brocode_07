@@ -203,3 +203,8 @@ nav {
 .dashboardBtn:hover {
     color: #37abff;
 }
+
+.nav__connect {
+    background-color: #0096FF;
+    padding: 10px;
+}

@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { AppContext } from '../../context/AppContext';
 import axios from '../../axios'
+import './form.css'
 
 export default function CreateComplaintForm(props) {
 
@@ -58,7 +59,7 @@ export default function CreateComplaintForm(props) {
             </button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
               <DialogTitle id="form-dialog-title">Create Complaint</DialogTitle>
-                {/* <DialogContent>
+              {/* <DialogContent>
                   <DialogContentText>
                   </DialogContentText>
                   <TextField
@@ -73,6 +74,7 @@ export default function CreateComplaintForm(props) {
                     fullWidth />
 
                 </DialogContent> */}
+              <div className="modalDiv">
                 <select>
                   <option value="add1">Address1</option>
                   <option value="add1">Address2</option>
@@ -80,8 +82,11 @@ export default function CreateComplaintForm(props) {
                   <option value="add1">Address4</option>
                 </select>
                 <input type="text" placeholder='Subject' />
-                <input type="text" placeholder='Description' />
-                <input type="file" name="my-image" id="image" accept="image/gif, image/jpeg, image/png" />
+                <textarea type="text" placeholder='Description' />
+                {/* <input type="file" name="my-image" id="image" accept="image/gif, image/jpeg, image/png" /> */}
+                <input type="file" name="file" id="file" className="inputfile" accept="image/gif, image/jpeg, image/png" />
+                <label for="file">Choose a file</label>
+              </div>
               <DialogActions>
                 <Button
                   onClick={handleClose}
@@ -91,9 +96,9 @@ export default function CreateComplaintForm(props) {
                 </Button>
                 <Button
                   // onClick={handleSubmit}
-                  color="primary"
+                  color="light"
                 >
-                  Save Changes
+                  Submit
                 </Button>
               </DialogActions>
             </Dialog>

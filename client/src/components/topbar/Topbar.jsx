@@ -18,6 +18,22 @@ export default function Topbar() {
     // const [searchValue, setSearchValue] = useState("");
     const navigate = useNavigate();
 
+    const connectHandler = async () => {
+        // const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        // const account = ethers.utils.getAddress(accounts[0])
+        // setAccount(account);
+        if (window.ethereum) {
+            // Do something 
+            window.ethereum.request({ method: 'eth_requestAccounts' })
+                .then(res => {
+                    // Return the address of the wallet
+                    console.log(res)
+                })
+        } else {
+            alert("install metamask extension!!")
+        }
+    }
+
     // const adminLogoutHandler = async () => {
     //     const res = await logout_admin()
     //     if (res) {
@@ -81,9 +97,16 @@ export default function Topbar() {
                 } */}
 
                 {
-                    userAuth ?
+                    userAuth || true ?
                         <>
                             <NavLink exact className='dashboardBtn' to='/user/dashboard'>Dashboard</NavLink>
+                            <button
+                                type="button"
+                                className='nav__connect'
+                                onClick={connectHandler}
+                            >
+                                Connect
+                            </button>
                         </>
                         :
                         <>
