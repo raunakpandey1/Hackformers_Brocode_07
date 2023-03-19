@@ -130,7 +130,7 @@ export default function CreateComplaintForm(props) {
         let transaction1 = await signer.createComplaint(props.account, CID);
         await transaction1.wait()
         console.log(psName)
-        let transaction2 = await signer.receivedComplaint("add1", CID);
+        let transaction2 = await signer.receivedComplaint(psName, CID);
         await transaction2.wait()
         alert("Complaint Created Successfully ");
 
@@ -184,8 +184,8 @@ export default function CreateComplaintForm(props) {
                   value={complaint.name}
                   label="status"
                   onChange={handleChange1}>
-                  <option value="Nerul">Nerul Police Station</option>
-                  <option value="Belapur">Belapur Police Station</option>
+                  <option value="Nerul Police Station">Nerul Police Station</option>
+                  <option value="Belapur Police Station">Belapur Police Station</option>
 
                 </select>
                 <input type="text" placeholder='Subject' name="subject"

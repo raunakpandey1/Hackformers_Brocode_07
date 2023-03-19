@@ -51,7 +51,7 @@ function receivedComplaint(string memory _name , string memory url) external {
 //   }
 
 
-  function Reward(address payable _user) public payable onlyOwner {
+  function Reward(address payable _user) public payable{
         require(msg.value > 0, "Please pay greater than 0 ether");
         (bool success, ) = payable(_user).call{value: msg.value}(""); //transfer ether to seller
         require(success);

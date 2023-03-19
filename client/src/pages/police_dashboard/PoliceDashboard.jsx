@@ -21,7 +21,7 @@ export default function PoliceDashboard({
 
         try {
             // console.log(police.name)
-            dataArray = await complaintContract.displayReceivedComplaint("add1");
+            dataArray = await complaintContract.displayReceivedComplaint(police.name);
             // console.log(dataArray)
             //   setData(dataArray)
 
@@ -130,7 +130,7 @@ export default function PoliceDashboard({
                                         <img src={e.image} />
                                     </div>
                                     <div className="pcdRight">
-                                        <h3>{e.name}</h3>
+                                        <h3>{e.subject}</h3>
 
                                         <p>{e.description}</p>
                                         <h3>{e.walletAddress}</h3>
