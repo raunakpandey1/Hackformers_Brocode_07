@@ -36,6 +36,11 @@ function receivedComplaint(string memory _name , string memory url) external {
       return complaints[_user];
   }
 
+  function displayReceivedComplaint(string memory _name) external view returns(string[] memory) {
+      return receivedComplaints[ _name ];
+   
+  }
+
 //   function createReplies(string memory url) external onlyOwner{
 //       complaints[owner].push(url);
 //       emit ComplaintCreated(owner , url);

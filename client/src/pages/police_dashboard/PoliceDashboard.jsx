@@ -16,67 +16,71 @@ export default function PoliceDashboard({
     let newArr = [];
     // console.log(police.name)
     const Getdata = async () => {
-        let dataArray;
-
-        try {
-            dataArray = await complaintContract.receivedComplaint("add2");
-            console.log(dataArray)
-            //   setData(dataArray)
-
-            //   await dataArray.forEach(async (e) => {
-            //     await fetch(e).then(async (response) => {
-            //         let ob = await response.json()
-            //         // console.log(ob)
-            //         // newArr.push(ob)
-            //         setData((dat) => [...dat, ob]);
-            //     });
-            //     // setData((dat) => [...dat, e]);
-            //   });
-            // dataArray.forEach(async (e) => {
-            //   let dat1 = await axios.get(e);
-            //   newArr.push(dat1.data);
-            //   // setData([...data,  dat1.data]);
-            //   // console.log(typeof dat1.data)
-            // });
-
-            //   console.log(newArr);
-            //   setData(newArr)
-        } catch (e) {
-            alert("You don't have access");
-        }
-        // const isEmpty = Object.keys(dataArray).length === 0;
-
-        // if (!isEmpty) {
-
-        //   const str = dataArray.toString();
-        //   const str_array = str.split(",");
-        //   // console.log(str);
-        //   console.log(str_array);
-        //   const images = str_array.map(async(item, i) => {
-        //     let dat1 = await axios.get(item);
-        //     // setData([...data,  dat1.data]);
-
+      let dataArray;
+  
+      try {
+        dataArray = await complaintContract.displayReceivedComplaint("add1");
+        console.log(dataArray)
+        //   setData(dataArray)
+  
+        //   await dataArray.forEach(async (e) => {
+        //     await fetch(e).then(async (response) => {
+        //         let ob = await response.json()
+        //         // console.log(ob)
+        //         // newArr.push(ob)
+        //         setData((dat) => [...dat, ob]);
+        //     });
+        //     // setData((dat) => [...dat, e]);
         //   });
-        //   console.log(images)
-        //   setData([...images]);
-        // } else {
-        //   alert("No image to display");
-        // }
-        //   console.log(dataArray)
+        dataArray.forEach(async (e) => {
+          let dat1 = await axios.get(e);
+          newArr.push(dat1.data);
+          // setData([...data,  dat1.data]);
+          // console.log(typeof dat1.data)
+        });
+  
+        //   console.log(newArr);
+        //   setData(newArr)
+      } catch (e) {
+        alert("You don't have access");
+      }
+      // const isEmpty = Object.keys(dataArray).length === 0;
+  
+      // if (!isEmpty) {
+  
+      //   const str = dataArray.toString();
+      //   const str_array = str.split(",");
+      //   // console.log(str);
+      //   console.log(str_array);
+      //   const images = str_array.map(async(item, i) => {
+      //     let dat1 = await axios.get(item);
+      //     // setData([...data,  dat1.data]);
+  
+      //   });
+      //   console.log(images)
+      //   setData([...images]);
+      // } else {
+      //   alert("No image to display");
+      // }
+      //   console.log(dataArray)
     };
     const Getdata1 = () => {
         setData(newArr)
         console.log(newArr);
     };
-    console.log(data)
-
-    const rewardUser = async () => {
-        const amount = { value: ethers.utils.parseEther("0.005") };
-        const transaction = await complaintContract.Reward(account, amount);
-        await transaction.wait();
-        console.log("Transaction is done");
-    }
-
+     console.log(data)
+  
+     const rewardUser = async(event , e) =>{
+        event.preventDefault()
+        console.log(e)
+      const amount = { value: ethers.utils.parseEther("0.001") };
+      const signer = complaintContract.connect(provider.getSigner());
+    //   console.log(signer)
+      const transaction = await signer.Reward(e, amount);
+      await transaction.wait();
+      console.log("Transaction is done");
+     } 
+  
     return (
         <div className='policeDashboard'>
             <div className="pdWrapper">
@@ -117,18 +121,18 @@ export default function PoliceDashboard({
                                     <div className="pcdRight">
                                         <h3>{e.name}</h3>
 
-                                        <p>{e.description}</p>
-                                        <h3>{e.walletAddress}</h3>
-                                        <select value={e.status}>
-                                            <option value="Action">Action</option>
-                                            <option value="Accept">Accept</option>
-                                            <option value="Reject">Reject</option>
-                                        </select>
-                                        <button className="rewardBtn" onClick={rewardUser}>Reward</button>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                    <p>{e.description}</p>
+                    <h3>{e.walletAddress}</h3>
+                    <select value={e.status}>
+                      <option value="Action">Action</option>
+                      <option value="Accept">Accept</option>
+                      <option value="Reject">Reject</option>
+                    </select>
+                    <button className="rewardBtn" onClick={(event)=>rewardUser(event , e.walletAddress)}>Reward</button>
+                  </div>
+                </div>
+              );
+            })}
                     {/* <div className="pComplaintDiv">
                         <div className="pcdLeft">
                             <img src="https://i.ndtvimg.com/mt/2014-12/indian_traffic_generic_thinkstock_650_bigstry.jpg" />

@@ -7,6 +7,7 @@ module.exports = {
     hardhat: {
       allowUnlimitedContractSize: true,
       blockGasLimit: 0x1fffffffffffff,
+     
     }
   },
     paths: {
