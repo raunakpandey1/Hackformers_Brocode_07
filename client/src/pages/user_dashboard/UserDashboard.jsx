@@ -87,6 +87,14 @@ export default function UserDashboard({
           <div className="pdfRight">
             <h2>{user.fullname}</h2>
             <p>{user.email}</p>
+            <div className="strikeDiv">
+              <div className={`${user.accountStatus ? "strike" : "strikeRed"}`}>
+                {user.strike}
+              </div>
+              <div className={`${user.accountStatus ? "accStatus" : "accInactive"}`}>
+                {user.accountStatus ? "Active" : "Inactive"}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -98,6 +106,7 @@ export default function UserDashboard({
             signal={true}
             provider={provider}
             account={account}
+            disable={user.strike > 5}
             complaintContract={complaintContract}
           />
         </div>

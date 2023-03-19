@@ -144,7 +144,7 @@ console.log(props.account)
             {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
               Edit Details
             </Button> */}
-            <button className="createComBtn" onClick={handleClickOpen}>
+            <button disabled={props.disable} className="createComBtn" onClick={handleClickOpen}>
               +
             </button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

@@ -4,3 +4,41 @@
     color: white;
     background-color: #0F132D;
 }
+
+.strikeDiv {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    align-items: center;
+}
+.strike {
+    height: 70px;
+    width: 70px;
+    background-color: green;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.strikeRed {
+    height: 70px;
+    width: 70px;
+    background-color: red;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.accStatus {
+    color: green;
+    font-weight: 600;
+}
+.accInactive {
+    color: red;
+    font-weight: 600;
+}
+
