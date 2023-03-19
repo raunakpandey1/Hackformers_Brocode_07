@@ -19,11 +19,12 @@ export default function UserDashboard({
     let dataArray;
     try {
       dataArray = await complaintContract.displayComplaint(account);
-      dataArray.forEach(async (e) => {
-        let dat1 = await axios.get(e);
+      console.log("dataArray", dataArray)
+      for(let i=0; i<dataArray.length; i++){
+        let dat1 = await axios.get(dataArray[i]);
         newArr.push(dat1.data);
-        Getdata1()
-      });
+      }
+      setData(newArr)
     } catch (e) {
       alert("You don't have access");
     }
