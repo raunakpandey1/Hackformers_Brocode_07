@@ -23,7 +23,7 @@ export default function CreateComplaintForm(props) {
   //   setMyUser({ ...myUser, [name]: value })
   // }
   console.log(props.account)
-  const [complaint, setComplaint] = useState({ image: "", name: "", subject: "", description: "", complaintStatus: "", walletAddress: props.account, reward: 0 })
+  const [complaint, setComplaint] = useState({ image: "", name: "", subject: "", description: "", walletAddress: props.account})
   const [file, setFile] = useState(null);
   const [psName, setPsName] = useState("");
 

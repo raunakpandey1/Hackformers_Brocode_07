@@ -28,8 +28,8 @@ const UserSchema = new mongoose.Schema({
     select: false,
   },
   strike: {
-    type: Number,
-    default : 0
+    type: Array,
+    default : []
    
   },
   accountStatus: {

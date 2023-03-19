@@ -14,6 +14,7 @@ export default function PoliceDashboard({
     const { police } = useContext(AppContext)
 
     const [data, setData] = useState([]);
+    const [complaint, setComplaint] = useState();
     let newArr = [];
     // console.log(police.name)
     const Getdata = async () => {
@@ -36,7 +37,7 @@ export default function PoliceDashboard({
             //   });
             for (let i = 0; i < dataArray.length; i++) {
                 let dat1 = await axios.get(dataArray[i]);
-                newArr.push(dat1.data);
+                newArr.push({...dat1.data, cid : dataArray[i].split('/')[4]});
             }
             setData(newArr)
             // dataArray.forEach(async (e) => {
@@ -89,6 +90,50 @@ export default function PoliceDashboard({
         console.log("Transaction is done");
     }
 
+
+     
+      const [cmpStatus, setCmpStatus] = useState();
+
+      const handleChange1 = async(event , e)=>{
+
+
+        // setComplaint({...e , complaintStatus : event.target.value});
+
+        console.log(e?.cid)
+        
+
+        // var data1 = JSON.stringify({ "ipfsPinHash": complaint?.cid ,"name": "Name1",
+        // "keyvalues": {
+        //     "complaintStatus" :  event.target.value,
+        //     "cid": complaint?.cid,
+        //     "description" : complaint.description,
+        //     "image" : complaint.image,
+        //     "name" : complaint.name,
+        //     "reward" : complaint.reward,
+        //     "subject" : complaint.subject,
+        //     "walletAddress" : complaint.walletAddress
+
+
+        // }});
+
+        // var config = {
+        // method: 'put',
+        // url: 'https://api.pinata.cloud/pinning/hashMetadata',
+        // headers: { 
+        //     Authorization:
+        //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzM2QwNjQ5Yy0wODdhLTRkMDItYjRlZi1hNTZkZDBjOTUwNTgiLCJlbWFpbCI6IndlZ2ViYTM4NTVAb25pZWNhbi5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiYTE3OGU2ZGE1Njc4NjE4NzMzMWQiLCJzY29wZWRLZXlTZWNyZXQiOiI2MzAxYzhkMGNmM2Y0ZTE4MGM5MzYxNTA4NTg3ZDViM2YxY2E0NDJmZTIzYzM0YjQ0ZTUyN2FhN2Q2NmQ2YTQ4IiwiaWF0IjoxNjc5MTUyNTk3fQ.N5bn_EyGxEkSUWeoX1KQlm2K1F2k3ZamJNZ5nyyv0_o"
+        //   ,
+        //     "Content-Type": "application/json"
+        // },
+        // data: data1
+        // };
+
+        // const res = await axios(config);
+
+        // console.log(res.data);
+        // // e.complainStatus = event.target.value
+        // console.log(complaint)
+      }
     return (
         <div className='policeDashboard'>
             <div className="pdWrapper">
@@ -133,8 +178,8 @@ export default function PoliceDashboard({
                                         <h3>{e.subject}</h3>
 
                                         <p>{e.description}</p>
-                                        <h3>{e.walletAddress}</h3>
-                                        <select value={e.status}>
+                                        <h5>{e.walletAddress}</h5>
+                                        <select value={e.status}  onChange={(event)=>handleChange1(event, e)}>
                                             <option value="Action">Action</option>
                                             <option value="Accept">Accept</option>
                                             <option value="Reject">Reject</option>
