@@ -29,32 +29,42 @@ exports.getpolice = async (req, res, next) => {
 
 
 exports.complaintStatus = async (req, res, next) => {
-    const { userId , cid , complaintStatus } = req.body;
+    const { cid , complaintStatus } = req.body;
     console.log(req.body)
     
     try {
-      const oldUser = await User.findOne({ _id: req.body.userId });
-      
        
-      if (!oldUser) {
-        return res.status(409).json({ sucess: false, error: "user does not exist" })
-      }
-
-      if(complaintStatus=="Reject"){
-        await oldUser.updateOne({ $push: { strike: new Date() } });
-        res.status(200).json(true);
-      }
-
+       
       const oldComplaint = await Complaint.findOne({ cid: req.body.cid });
-
+      console.log()  
       if(oldComplaint){
         await oldComplaint.updateOne({ $set: { complaintStatus: complaintStatus } });
+        res.status(200).json(true);
       }else {
         await Complaint.create({
-            userId,
             cid,
             complaintStatus
           });
+          res.status(200).json(true);
+      }
+    }
+    catch (err) {
+      next(err);
+    }
+  };
+  
+
+  exports.checkcomplaintStatus = async (req, res, next) => {
+    const {  cid  } = req.body;
+    console.log(req.body)
+    
+    try {
+      const oldComplaint = await Complaint.findOne({ cid: req.body.cid });
+
+      if(oldComplaint){
+        res.status(200).json({complaintStatus : oldComplaint.complaintStatus});
+      }else {
+        res.status(200).json({complaintStatus : ""});
       
       }
       
@@ -64,7 +74,25 @@ exports.complaintStatus = async (req, res, next) => {
       next(err);
     }
   };
-  
+
+  exports.checkcomplaintStatusUser = async (req, res, next) => {
+    const {  cid  } = req.body;
+    console.log(req.body)
+    
+    try {
+      const oldComplaint = await Complaint.findOne({ cid: req.body.cid });
+
+      if(oldComplaint){
+        res.status(200).json({complaintStatus : oldComplaint.complaintStatus});
+      }else {
+        res.status(200).json({complaintStatus : ""});
+      
+      } 
+    }
+    catch (err) {
+      next(err);
+    }
+  };
 
 
 

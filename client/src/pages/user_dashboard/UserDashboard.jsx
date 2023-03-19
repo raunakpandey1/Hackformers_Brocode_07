@@ -22,9 +22,18 @@ export default function UserDashboard({
       console.log("dataArray", dataArray)
       for(let i=0; i<dataArray.length; i++){
         let dat1 = await axios.get(dataArray[i]);
-        newArr.push(dat1.data);
+        const config = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("userAuthToken")}`
+            },
+        }
+        const data = await axios.post("/api/private/checkcomplaintstatususer", {cid : dataArray[i].split('/')[4]} ,config )
+        newArr.push({...dat1.data, cid : dataArray[i].split('/')[4], complaintStatus: data.data.complaintStatus});
       }
       setData(newArr)
+      console.log(newArr)
     } catch (e) {
       alert("You don't have access");
     }

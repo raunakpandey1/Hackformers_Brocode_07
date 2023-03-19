@@ -37,7 +37,15 @@ export default function PoliceDashboard({
             //   });
             for (let i = 0; i < dataArray.length; i++) {
                 let dat1 = await axios.get(dataArray[i]);
-                newArr.push({...dat1.data, cid : dataArray[i].split('/')[4]});
+                const config = {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("policeAuthToken")}`
+                    },
+                }
+                const data = await axios.post("/api/private/checkcomplaintstatus", {cid : dataArray[i].split('/')[4]} ,config )
+                newArr.push({...dat1.data, cid : dataArray[i].split('/')[4], complaintStatus: data.data.complaintStatus});
             }
             setData(newArr)
             // dataArray.forEach(async (e) => {
@@ -95,40 +103,24 @@ export default function PoliceDashboard({
       const [cmpStatus, setCmpStatus] = useState();
 
       const handleChange1 = async(event , e)=>{
-
-
-        // setComplaint({...e , complaintStatus : event.target.value});
-
         console.log(e?.cid)
+
+         
+
         
+         
+        const config = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("policeAuthToken")}`
+            },
+        }
+        const data = axios.post("/api/private/setcomplaintstatus", {cid : e.cid , complaintStatus : event.target.value} ,config )
+        if(data) {
+            alert("Action updated")
+        }
 
-        // var data1 = JSON.stringify({ "ipfsPinHash": complaint?.cid ,"name": "Name1",
-        // "keyvalues": {
-        //     "complaintStatus" :  event.target.value,
-        //     "cid": complaint?.cid,
-        //     "description" : complaint.description,
-        //     "image" : complaint.image,
-        //     "name" : complaint.name,
-        //     "reward" : complaint.reward,
-        //     "subject" : complaint.subject,
-        //     "walletAddress" : complaint.walletAddress
-
-
-        // }});
-
-        // var config = {
-        // method: 'put',
-        // url: 'https://api.pinata.cloud/pinning/hashMetadata',
-        // headers: { 
-        //     Authorization:
-        //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzM2QwNjQ5Yy0wODdhLTRkMDItYjRlZi1hNTZkZDBjOTUwNTgiLCJlbWFpbCI6IndlZ2ViYTM4NTVAb25pZWNhbi5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiYTE3OGU2ZGE1Njc4NjE4NzMzMWQiLCJzY29wZWRLZXlTZWNyZXQiOiI2MzAxYzhkMGNmM2Y0ZTE4MGM5MzYxNTA4NTg3ZDViM2YxY2E0NDJmZTIzYzM0YjQ0ZTUyN2FhN2Q2NmQ2YTQ4IiwiaWF0IjoxNjc5MTUyNTk3fQ.N5bn_EyGxEkSUWeoX1KQlm2K1F2k3ZamJNZ5nyyv0_o"
-        //   ,
-        //     "Content-Type": "application/json"
-        // },
-        // data: data1
-        // };
-
-        // const res = await axios(config);
 
         // console.log(res.data);
         // // e.complainStatus = event.target.value
@@ -179,7 +171,7 @@ export default function PoliceDashboard({
 
                                         <p>{e.description}</p>
                                         <h5>{e.walletAddress}</h5>
-                                        <select value={e.status}  onChange={(event)=>handleChange1(event, e)}>
+                                        <select value={e.complaintStatus}  onChange={(event)=>handleChange1(event, e)}>
                                             <option value="Action">Action</option>
                                             <option value="Accept">Accept</option>
                                             <option value="Reject">Reject</option>
