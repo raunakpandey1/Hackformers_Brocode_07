@@ -12,7 +12,7 @@ import './form.css'
 
 export default function CreateComplaintForm(props) {
 
-  const { user  , police} = useContext(AppContext);
+  const { user, police } = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
   // const [myUser, setMyUser] = useState(user)
 
@@ -22,11 +22,11 @@ export default function CreateComplaintForm(props) {
   //   const value = e.target.value;
   //   setMyUser({ ...myUser, [name]: value })
   // }
-console.log(props.account)
-  const [complaint, setComplaint] = useState({ image: "", name : "", subject: "", description: "" , complaintStatus :"" , walletAddress : props.account , reward : 0})
+  console.log(props.account)
+  const [complaint, setComplaint] = useState({ image: "", name: "", subject: "", description: "", complaintStatus: "", walletAddress: props.account, reward: 0 })
   const [file, setFile] = useState(null);
   const [psName, setPsName] = useState("");
-  
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -50,7 +50,7 @@ console.log(props.account)
     setOpen(false);
   };
 
-  
+
   const handleChange = async (e) => {
     // const data = e.target.files[0]; //files array of files object
     // // console.log(data);
@@ -62,29 +62,30 @@ console.log(props.account)
     // // setFileName(e.target.files[0].name);
     e.preventDefault();
     // console.log(e.target.files[0])
-  try {
-        const formData = new FormData();
-        formData.append("file", e.target.files[0]);
-        console.log(file);
-        const resFile = await axios({
-          method: "post",
-          url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
-          data: formData,
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzM2QwNjQ5Yy0wODdhLTRkMDItYjRlZi1hNTZkZDBjOTUwNTgiLCJlbWFpbCI6IndlZ2ViYTM4NTVAb25pZWNhbi5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiYTE3OGU2ZGE1Njc4NjE4NzMzMWQiLCJzY29wZWRLZXlTZWNyZXQiOiI2MzAxYzhkMGNmM2Y0ZTE4MGM5MzYxNTA4NTg3ZDViM2YxY2E0NDJmZTIzYzM0YjQ0ZTUyN2FhN2Q2NmQ2YTQ4IiwiaWF0IjoxNjc5MTUyNTk3fQ.N5bn_EyGxEkSUWeoX1KQlm2K1F2k3ZamJNZ5nyyv0_o"},
-        });
-         
-        const ImgHash = `https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
-        
-        //setting imageUrl in painting object after uploading on IPFS
-        setComplaint({ ...complaint, image: ImgHash });
-        console.log(ImgHash)
-        alert('uploaded successfully')
-      } catch (e) {
-        alert("Unable to upload image to Pinata");
-      }
+    try {
+      const formData = new FormData();
+      formData.append("file", e.target.files[0]);
+      console.log(file);
+      const resFile = await axios({
+        method: "post",
+        url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzM2QwNjQ5Yy0wODdhLTRkMDItYjRlZi1hNTZkZDBjOTUwNTgiLCJlbWFpbCI6IndlZ2ViYTM4NTVAb25pZWNhbi5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiYTE3OGU2ZGE1Njc4NjE4NzMzMWQiLCJzY29wZWRLZXlTZWNyZXQiOiI2MzAxYzhkMGNmM2Y0ZTE4MGM5MzYxNTA4NTg3ZDViM2YxY2E0NDJmZTIzYzM0YjQ0ZTUyN2FhN2Q2NmQ2YTQ4IiwiaWF0IjoxNjc5MTUyNTk3fQ.N5bn_EyGxEkSUWeoX1KQlm2K1F2k3ZamJNZ5nyyv0_o"
+        },
+      });
+
+      const ImgHash = `https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
+
+      //setting imageUrl in painting object after uploading on IPFS
+      setComplaint({ ...complaint, image: ImgHash });
+      console.log(ImgHash)
+      alert('uploaded successfully')
+    } catch (e) {
+      alert("Unable to upload image to Pinata");
+    }
   };
 
   const handleChange1 = async (e) => {
@@ -98,11 +99,11 @@ console.log(props.account)
   //Function to send meta data to Pinata (IPFS)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     var formData = JSON.stringify(complaint);
     console.log(formData)
     if (complaint) {
-      
+
       try {
         // console.log(psName)
         // format mentioned in pinata documentation
@@ -112,8 +113,9 @@ console.log(props.account)
           headers: {
             "Content-Type": "application/json",
             Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzM2QwNjQ5Yy0wODdhLTRkMDItYjRlZi1hNTZkZDBjOTUwNTgiLCJlbWFpbCI6IndlZ2ViYTM4NTVAb25pZWNhbi5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiYTE3OGU2ZGE1Njc4NjE4NzMzMWQiLCJzY29wZWRLZXlTZWNyZXQiOiI2MzAxYzhkMGNmM2Y0ZTE4MGM5MzYxNTA4NTg3ZDViM2YxY2E0NDJmZTIzYzM0YjQ0ZTUyN2FhN2Q2NmQ2YTQ4IiwiaWF0IjoxNjc5MTUyNTk3fQ.N5bn_EyGxEkSUWeoX1KQlm2K1F2k3ZamJNZ5nyyv0_o"},
-          
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzM2QwNjQ5Yy0wODdhLTRkMDItYjRlZi1hNTZkZDBjOTUwNTgiLCJlbWFpbCI6IndlZ2ViYTM4NTVAb25pZWNhbi5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJpZCI6IkZSQTEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX0seyJpZCI6Ik5ZQzEiLCJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MX1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiYTE3OGU2ZGE1Njc4NjE4NzMzMWQiLCJzY29wZWRLZXlTZWNyZXQiOiI2MzAxYzhkMGNmM2Y0ZTE4MGM5MzYxNTA4NTg3ZDViM2YxY2E0NDJmZTIzYzM0YjQ0ZTUyN2FhN2Q2NmQ2YTQ4IiwiaWF0IjoxNjc5MTUyNTk3fQ.N5bn_EyGxEkSUWeoX1KQlm2K1F2k3ZamJNZ5nyyv0_o"
+          },
+
           data: formData,
         };
 
@@ -131,14 +133,15 @@ console.log(props.account)
         let transaction2 = await signer.receivedComplaint("add1", CID);
         await transaction2.wait()
         alert("Complaint Created Successfully ");
-         
+
       } catch (e) {
         alert("Unable to upload image to Pinata");
       }
     }
-  
+
   };
 
+  console.log(complaint)
   // console.log(props.complaintContract)
   return (
 
@@ -169,47 +172,48 @@ console.log(props.account)
                     fullWidth />
 
                 </DialogContent> */}
-                <div className="modalDiv">
-                
-                
- <input type="file" name="image" id="file" className="inputfile" accept="image/gif, image/jpeg, image/png" onChange={
-                      (e) => handleChange(e)
-                      
-                    }/>
+              <div className="modalDiv">
+
+
+                <input type="file" name="image" id="file" className="inputfile" accept="image/gif, image/jpeg, image/png" onChange={
+                  (e) => handleChange(e)
+
+                } />
                 <label for="file">Choose a file</label>
-                <select 
+                <select
                   value={complaint.name}
-                        label="status"
-                        onChange={handleChange1}>
+                  label="status"
+                  onChange={handleChange1}>
                   <option value="Nerul">Nerul Police Station</option>
                   <option value="Belapur">Belapur Police Station</option>
-                  
+
                 </select>
                 <input type="text" placeholder='Subject' name="subject"
-                    value={complaint.subject}
-                    onChange={
-                      (e) =>
-                        setComplaint({
-                          ...complaint,
-                          subject: e.target.value,
-                          walletAddress : props.account
-                        })
-                      // console.log(e.target.value)
-                    }/>
+                  value={complaint.subject}
+                  onChange={
+                    (e) =>
+                      setComplaint({
+                        ...complaint,
+                        subject: e.target.value,
+                        walletAddress: props.account
+                      })
+                    // console.log(e.target.value)
+                  } />
 
-<textarea type="text" placeholder='Description' name="description"
-                    value={complaint.description}
-                    onChange={
-                      (e) =>
-                        setComplaint({
-                          ...complaint,
-                          description: e.target.value,
-                        })}/>
+                <textarea type="text" placeholder='Description' name="description"
+                  value={complaint.description}
+                  onChange={
+                    (e) =>
+                      setComplaint({
+                        ...complaint,
+                        description: e.target.value,
+                      })}
+                />
               </div>
               <DialogActions>
                 <Button
                   onClick={handleClose}
-                   
+
                 >
                   Cancel
                 </Button>
@@ -219,11 +223,11 @@ console.log(props.account)
                 >
                   Submit
                 </Button>
-                
+
               </DialogActions>
-              
+
             </Dialog>
-            
+
           </>
           : null
       }

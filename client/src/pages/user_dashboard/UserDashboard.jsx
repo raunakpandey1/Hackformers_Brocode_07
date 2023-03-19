@@ -131,16 +131,16 @@ export default function UserDashboard({
                     <img src={e.image} />
                   </div>
                   <div className="pcdRight">
-                    <h3>{e.name}</h3>
+                    <h3>{e.subject}</h3>
 
                     <p>{e.description}</p>
                     <h3>{e.walletAddress}</h3>
-                    <select value={e.status}>
+                    {/* <select value={e.status}>
                       <option value="Action">Action</option>
                       <option value="Accept">Accept</option>
                       <option value="Reject">Reject</option>
                     </select>
-                    <button className="rewardBtn" onClick={rewardUser}>Reward</button>
+                    <button className="rewardBtn" onClick={rewardUser}>Reward</button> */}
                   </div>
                 </div>
               );
