@@ -12,7 +12,7 @@ import './form.css'
 
 export default function CreateComplaintForm(props) {
 
-  const { user } = useContext(AppContext);
+  const { user  , police} = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
   // const [myUser, setMyUser] = useState(user)
 
@@ -25,7 +25,7 @@ export default function CreateComplaintForm(props) {
 console.log(props.account)
   const [complaint, setComplaint] = useState({ image: "", name : "", subject: "", description: "" , complaintStatus :"" , walletAddress : props.account , reward : 0})
   const [file, setFile] = useState(null);
-
+  const [psName, setPsName] = useState("");
   
   const handleClickOpen = () => {
     setOpen(true);
@@ -88,21 +88,24 @@ console.log(props.account)
   };
 
   const handleChange1 = async (e) => {
-    setComplaint({ ...complaint, name: e.target.value });
-
+    // console.log(e.target.value)
+    setComplaint({ ...complaint, 'name': e.target.value });
+    setPsName(e.target.value)
   }
 
-  // console.log(complaint)
+  // console.log(complaint.name)
 
   //Function to send meta data to Pinata (IPFS)
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     var formData = JSON.stringify(complaint);
+    console.log(formData)
     if (complaint) {
-    //   console.log(formData);
+      
       try {
-
-        //format mentioned in pinata documentation
+        // console.log(psName)
+        // format mentioned in pinata documentation
         var config = {
           method: "post",
           url: "https://api.pinata.cloud/pinning/pinJSONToIPFS",
@@ -116,13 +119,15 @@ console.log(props.account)
 
         const res = await axios(config);
 
+        // console.log(complaint.name)
         // console.log(res.data);
         const CID = `https://gateway.pinata.cloud/ipfs/${res.data.IpfsHash}`;
         console.log(CID);
         const signer = props.complaintContract.connect(props.provider.getSigner());
-        console.log(props.account)
+        // console.log(props.account)
         let transaction1 = await signer.createComplaint(props.account, CID);
         await transaction1.wait()
+        console.log(psName)
         let transaction2 = await signer.receivedComplaint("add1", CID);
         await transaction2.wait()
         alert("Complaint Created Successfully ");
@@ -176,10 +181,9 @@ console.log(props.account)
                   value={complaint.name}
                         label="status"
                         onChange={handleChange1}>
-                  <option value="add1">Address1</option>
-                  <option value="add2">Address2</option>
-                  <option value="add3">Address3</option>
-                  <option value="add4">Address4</option>
+                  <option value="Nerul">Nerul Police Station</option>
+                  <option value="Belapur">Belapur Police Station</option>
+                  
                 </select>
                 <input type="text" placeholder='Subject' name="subject"
                     value={complaint.subject}

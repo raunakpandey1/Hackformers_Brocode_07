@@ -19,6 +19,7 @@ export default function PoliceDashboard({
       let dataArray;
   
       try {
+        // console.log(police.name)
         dataArray = await complaintContract.displayReceivedComplaint("add1");
         console.log(dataArray)
         //   setData(dataArray)
@@ -42,6 +43,7 @@ export default function PoliceDashboard({
         //   console.log(newArr);
         //   setData(newArr)
       } catch (e) {
+        
         alert("You don't have access");
       }
       // const isEmpty = Object.keys(dataArray).length === 0;

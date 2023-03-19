@@ -18,7 +18,9 @@ export default function UserDashboard({
     let dataArray;
     // console.log("helo", complaintContract, account)
     try {
-      dataArray = await complaintContract.displayComplaint(account);
+        console.log(account)
+       dataArray = await complaintContract.displayComplaint(account);
+
       //   setData(dataArray)
 
       //   await dataArray.forEach(async (e) => {
@@ -32,8 +34,8 @@ export default function UserDashboard({
       //   });
       dataArray.forEach(async (e) => {
         // let dat1 = await axios.get(e);
-        let dat1 = await fetch(e)
-        newArr.push(dat1.data);
+        let dat1 = await axios.get(e);
+          newArr.push(dat1.data);
         // setData([...data,  dat1.data]);
         // console.log(typeof dat1.data)
       });
@@ -41,7 +43,7 @@ export default function UserDashboard({
       //   console.log(newArr);
       //   setData(newArr)
     } catch (e) {
-      console.log("Helo", e)
+    //   console.log("Helo", e)
       alert("You don't have access");
     }
     // const isEmpty = Object.keys(dataArray).length === 0;
@@ -77,6 +79,7 @@ export default function UserDashboard({
     console.log("Transaction is done");
   }
 
+  console.log(newArr)
   return (
     <div className="policeDashboard">
       <div className="pdWrapper">
